@@ -11,13 +11,13 @@
 
 using namespace std;
 
-//функция для проверки корректности ввода
+//С„СѓРЅРєС†РёСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РІРІРѕРґР°
 bool korrec(const string& a) {
 	if (a.empty())
-		return false;// Пустой ввод
+		return false;// РџСѓСЃС‚РѕР№ РІРІРѕРґ
 
 	for (char c : a) {
-		if (!isdigit(c)) { // Проверяем, что все символы - цифры
+		if (!isdigit(c)) { // РџСЂРѕРІРµСЂСЏРµРј, С‡С‚Рѕ РІСЃРµ СЃРёРјРІРѕР»С‹ - С†РёС„СЂС‹
 			return false;
 		}
 	}
@@ -25,7 +25,7 @@ bool korrec(const string& a) {
 	return true;
 }
 
-void merge(UNode& head, UNode left, UNode right) {//соеденяет 2 списка вместе
+void merge(UNode& head, UNode left, UNode right) {//СЃРѕРµРґРµРЅСЏРµС‚ 2 СЃРїРёСЃРєР° РІРјРµСЃС‚Рµ
 	if (!left) {
 		head = right;
 		return;
@@ -49,7 +49,7 @@ void merge(UNode& head, UNode left, UNode right) {//соеденяет 2 списка вместе
 	head->prev = nullptr;
 }
 
-void split(UNode& p, UNode& left, UNode& right) {//делит список на две части
+void split(UNode& p, UNode& left, UNode& right) {//РґРµР»РёС‚ СЃРїРёСЃРѕРє РЅР° РґРІРµ С‡Р°СЃС‚Рё
 	UNode fast = p;
 	UNode slow = p;
 	UNode prev = nullptr;
@@ -67,7 +67,7 @@ void split(UNode& p, UNode& left, UNode& right) {//делит список на две части
 	if (right) right->prev = nullptr;
 }
 
-void mergeSort(UNode& head) {//функция для сортировки списка
+void mergeSort(UNode& head) {//С„СѓРЅРєС†РёСЏ РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё СЃРїРёСЃРєР°
 	if (!head || !head->next) return;
 
 	UNode left = nullptr;
@@ -81,7 +81,7 @@ void mergeSort(UNode& head) {//функция для сортировки списка
 	merge(head, left, right);
 }
 
-//добавление элемента в список в конец
+//РґРѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РІ СЃРїРёСЃРѕРє РІ РєРѕРЅРµС†
 void AddLast(UNode& Head, UNode& Tail, int x)
 {
 	UNode NewUsel = new Usel;
@@ -90,45 +90,45 @@ void AddLast(UNode& Head, UNode& Tail, int x)
 	NewUsel->x = x;
 	if (Tail) Tail->next = NewUsel;
 	Tail = NewUsel;
-	if (Head == NULL) Head = Tail; // этот элемент – первый 
+	if (Head == NULL) Head = Tail; // СЌС‚РѕС‚ СЌР»РµРјРµРЅС‚ вЂ“ РїРµСЂРІС‹Р№  
 }
 
-//заполнение списка с клавиатуры
+//Р·Р°РїРѕР»РЅРµРЅРёРµ СЃРїРёСЃРєР° СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 void Board(UNode& Tree, UNode& Tail) {
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	string n, x;
-	cout << "Введите количество элементов: ";
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: ";
 	getline(cin, n);
 
 	while (!korrec(n)) {
-		cout << "\nНекорректный ввод, повторите ввод: ";
+		cout << "\nРќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ: ";
 		getline(cin, n);
 	}
 
 	for (int i = 0; i < stoi(n); i++) {
-		cout << "Введите ключ: ";
+		cout << "Р’РІРµРґРёС‚Рµ РєР»СЋС‡: ";
 		getline(cin, x);
 		while (!korrec(x)) {
-			cout << "\nНекорректный ввод, введите число: ";
+			cout << "\nРќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РІРІРµРґРёС‚Рµ С‡РёСЃР»Рѕ: ";
 			getline(cin, x);
 		}
 		AddLast(Tree, Tail, stoi(x));
 	}
 }
 
-//заполнение списка рандомно
+//Р·Р°РїРѕР»РЅРµРЅРёРµ СЃРїРёСЃРєР° СЂР°РЅРґРѕРјРЅРѕ
 void Rand(UNode& Tree, UNode& Tail) {
 	srand(time(0));
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	string n;
 	int a;
-	cout << "Введите количество элементов: ";
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: ";
 	getline(cin, n);
 
 	while (!korrec(n)) {
-		cout << "\nНекорректный ввод, повторите ввод: ";
+		cout << "\nРќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ: ";
 		getline(cin, n);
 	}
 	for (int i = 0; i < stoi(n); i++) {
@@ -137,35 +137,35 @@ void Rand(UNode& Tree, UNode& Tail) {
 	}
 }
 
-//заполнение списка из файла
+//Р·Р°РїРѕР»РЅРµРЅРёРµ СЃРїРёСЃРєР° РёР· С„Р°Р№Р»Р°
 void File(UNode& Tree, UNode& Tail) {
 	int x;
 	fstream f;
-	bool isLeft = true; // начинаем с левого поддерева
+	bool isLeft = true; // РЅР°С‡РёРЅР°РµРј СЃ Р»РµРІРѕРіРѕ РїРѕРґРґРµСЂРµРІР°
 	f.open("Spisok.txt");
 	if (!f.is_open()) {
-		cout << "Повторите попытку!";
+		cout << "РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ!";
 		return;
 	}
 	if (!(f >> x)) {
-		cout << "Файл пуст или содержит некорректные данные, повторите попытку" << endl;
+		cout << "Р¤Р°Р№Р» РїСѓСЃС‚ РёР»Рё СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ, РїРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ" << endl;
 		return;
 	}
-	cout << "Содержащиеся в файле элементы: " << endl;
+	cout << "РЎРѕРґРµСЂР¶Р°С‰РёРµСЃСЏ РІ С„Р°Р№Р»Рµ СЌР»РµРјРµРЅС‚С‹: " << endl;
 	do {
 		cout << x << " ";
 		AddLast(Tree, Tail, x);
 	} while (f >> x);
 }
 
-//вывод списка
+//РІС‹РІРѕРґ СЃРїРёСЃРєР°
 void PrintSpisok(UNode& Tree, UNode& Tail) {
 	if (Tree == NULL) {
-		cout << "Дерево пустое!";
+		cout << "Р”РµСЂРµРІРѕ РїСѓСЃС‚РѕРµ!";
 	}
 	else {
 		UNode p = Tree;
-		cout << "\nСоставленный список: " << endl;
+		cout << "\nРЎРѕСЃС‚Р°РІР»РµРЅРЅС‹Р№ СЃРїРёСЃРѕРє: " << endl;
 		while (p) {
 			cout << p->x << " ";
 			p = p->next;
@@ -178,39 +178,39 @@ void AddToTree(PNode& Tree, UNode& Head) {
 		return; 
 	}
 
-	// Находим средний элемент списка
+	// РќР°С…РѕРґРёРј СЃСЂРµРґРЅРёР№ СЌР»РµРјРµРЅС‚ СЃРїРёСЃРєР°
 	UNode slow = Head;
 	UNode fast = Head;
-	UNode prev = nullptr;
+	UNode prev = NULL;
 
-	// Используем два указателя для нахождения среднего элемента
+	// РСЃРїРѕР»СЊР·СѓРµРј РґРІР° СѓРєР°Р·Р°С‚РµР»СЏ РґР»СЏ РЅР°С…РѕР¶РґРµРЅРёСЏ СЃСЂРµРґРЅРµРіРѕ СЌР»РµРјРµРЅС‚Р°
 	while (fast && fast->next) {
 		prev = slow;
 		slow = slow->next;
 		fast = fast->next->next;
 	}
 
-	// slow на средний элемент
+	// slow РЅР° СЃСЂРµРґРЅРёР№ СЌР»РµРјРµРЅС‚
 	Tree = new Node; 
 	Tree->key = slow->x; 
-	Tree->left = nullptr;
-	Tree->right = nullptr;
+	Tree->left = NULL;
+	Tree->right = NULL;
 
-	// Теперь нужно разделить список на левую и правую стороны
+	// РўРµРїРµСЂСЊ РЅСѓР¶РЅРѕ СЂР°Р·РґРµР»РёС‚СЊ СЃРїРёСЃРѕРє РЅР° Р»РµРІСѓСЋ Рё РїСЂР°РІСѓСЋ СЃС‚РѕСЂРѕРЅС‹
 	if (prev) {
-		prev->next = nullptr; // Разделяем список на две части
+		prev->next = NULL; // Р Р°Р·РґРµР»СЏРµРј СЃРїРёСЃРѕРє РЅР° РґРІРµ С‡Р°СЃС‚Рё
 		AddToTree(Tree->left, Head); 
 	}
 
-	// Отделяем средний элемент от левой части списка
+	// РћС‚РґРµР»СЏРµРј СЃСЂРµРґРЅРёР№ СЌР»РµРјРµРЅС‚ РѕС‚ Р»РµРІРѕР№ С‡Р°СЃС‚Рё СЃРїРёСЃРєР°
 	UNode rightHead = slow->next; 
-	slow->next = nullptr; 
+	slow->next = NULL; 
 	AddToTree(Tree->right, rightHead); 
 }
 
 
 
-// Добавление элемента в бинарное дерево 
+// Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РІ Р±РёРЅР°СЂРЅРѕРµ РґРµСЂРµРІРѕ 
 void AddToOneEl(PNode& Tree, int data)
 {
 	if (!Tree) {
@@ -221,7 +221,7 @@ void AddToOneEl(PNode& Tree, int data)
 		return;
 	}
 
-	queue<PNode> q;//используем очередь для удобства
+	queue<PNode> q;//РёСЃРїРѕР»СЊР·СѓРµРј РѕС‡РµСЂРµРґСЊ
 	q.push(Tree);
 
 	while (!q.empty()) {
@@ -250,46 +250,46 @@ void AddToOneEl(PNode& Tree, int data)
 }
 
 
-//добавление елементов в дерево с клавиатуры
+//РѕР±Р°РІР»РµРЅРёРµ РµР»РµРјРµРЅС‚РѕРІ РІ РґРµСЂРµРІРѕ СЃ РєР»Р°РІРёР°С‚СѓСЂС‹
 void Keyboard(PNode& Tree) {
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
-	bool isLeft = true; // начинаем с левого поддерева
+	bool isLeft = true; // РЅР°С‡РёРЅР°РµРј СЃ Р»РµРІРѕРіРѕ РїРѕРґРґРµСЂРµРІР°
 
 	string n, x;
-	cout << "Введите количество элементов: ";
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: ";
 	getline(cin, n);
 
 	while (!korrec(n)) {
-		cout << "\nНекорректный ввод, повторите ввод: ";
+		cout << "\nРќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ: ";
 		getline(cin, n);
 	}
 
 	for (int i = 0; i < stoi(n); i++) {
-		cout << "Введите ключ: ";
+		cout << "Р’РІРµРґРёС‚Рµ РєР»СЋС‡: ";
 		getline(cin, x);
 		while (!korrec(x)) {
-			cout << "\nНекорректный ввод, введите число: ";
+			cout << "\nРќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РІРІРµРґРёС‚Рµ С‡РёСЃР»Рѕ: ";
 			getline(cin, x);
 		}
-		// Автоматически чередуем направления
+		// РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё С‡РµСЂРµРґСѓРµРј РЅР°РїСЂР°РІР»РµРЅРёСЏ
 		AddToOneEl(Tree,stoi( x));
 	}
 }
 
-//заполнение дерева рандомными числами
+//Р·Р°РїРѕР»РЅРµРЅРёРµ РґРµСЂРµРІР° СЂР°РЅРґРѕРјРЅС‹РјРё С‡РёСЃР»Р°РјРё
 void Random(PNode& Tree) {
 	srand(time(0));
 	cin.clear();
 	cin.ignore(numeric_limits<streamsize>::max(), '\n');
 	string n;
 	int x;
-	bool isLeft = true; // начинаем с левого поддерева
-	cout << "Введите количество элементов: ";
+	bool isLeft = true; // РЅР°С‡РёРЅР°РµРј СЃ Р»РµРІРѕРіРѕ РїРѕРґРґРµСЂРµРІР°
+	cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: ";
 	getline(cin, n);
 
 	while (!korrec(n)) {
-		cout << "\nНекорректный ввод, повторите ввод: ";
+		cout << "\nРќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ, РїРѕРІС‚РѕСЂРёС‚Рµ РІРІРѕРґ: ";
 		getline(cin, n);
 	}
 	for (int i = 0; i < stoi(n); i++) {
@@ -298,28 +298,28 @@ void Random(PNode& Tree) {
 	}
 }
 
-//заполнение дерева из файла
+//Р·Р°РїРѕР»РЅРµРЅРёРµ РґРµСЂРµРІР° РёР· С„Р°Р№Р»Р°
 void ToFile(PNode& Tree) {
 	int x;
 	fstream f;
-	bool isLeft = true; // начинаем с левого поддерева
+	bool isLeft = true; // РЅР°С‡РёРЅР°РµРј СЃ Р»РµРІРѕРіРѕ РїРѕРґРґРµСЂРµРІР°
 	f.open("Tree.txt");
 	if (!f.is_open()) {
-		cout << "Повторите попытку!";
+		cout << "РџРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ!";
 		return;
 	}
 	if (!(f >> x)) {
-		cout << "Файл пуст или содержит некорректные данные, повторите попытку";
+		cout << "Р¤Р°Р№Р» РїСѓСЃС‚ РёР»Рё СЃРѕРґРµСЂР¶РёС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅС‹Рµ РґР°РЅРЅС‹Рµ, РїРѕРІС‚РѕСЂРёС‚Рµ РїРѕРїС‹С‚РєСѓ";
 		return;
 	}
-	cout << "Содержащиеся в файле элементы: " << endl;
+	cout << "РЎРѕРґРµСЂР¶Р°С‰РёРµСЃСЏ РІ С„Р°Р№Р»Рµ СЌР»РµРјРµРЅС‚С‹: " << endl;
 	do {
 		cout << x << " ";
 		AddToOneEl(Tree, x);
 	} while (f >> x);
 }
 
-//вывод дерева
+//РІС‹РІРѕРґ РґРµСЂРµРІР°
 void Print(PNode& Tree, string const& rpref, string const& cpref, string const& lpref) {
 	if (!Tree) return;
 	if (Tree->right)
@@ -329,34 +329,34 @@ void Print(PNode& Tree, string const& rpref, string const& cpref, string const& 
 		Print(Tree->left, lpref + " | ", lpref + " +--", lpref + "   ");
 }
 
-//вывод дерева в порядке корень-право-лево
+//РІС‹РІРѕРґ РґРµСЂРµРІР° РІ РїРѕСЂСЏРґРєРµ РєРѕСЂРµРЅСЊ-РїСЂР°РІРѕ-Р»РµРІРѕ
 vector<int> inOrder(Node* root) {
 	vector<int> res;
 	Node* curr = root;
 
 	while (curr != nullptr) {
-		// Если нет правого потомка, значит нужно посетить текущий узел
+		// Р•СЃР»Рё РЅРµС‚ РїСЂР°РІРѕРіРѕ РїРѕС‚РѕРјРєР°, Р·РЅР°С‡РёС‚ РЅСѓР¶РЅРѕ РїРѕСЃРµС‚РёС‚СЊ С‚РµРєСѓС‰РёР№ СѓР·РµР»
 		if (curr->right == nullptr) {
 			res.push_back(curr->key);
 			curr = curr->left;
 		}
 		else {
-			// Находим правый потомок текущего узла
+			// РќР°С…РѕРґРёРј РїСЂР°РІС‹Р№ РїРѕС‚РѕРјРѕРє С‚РµРєСѓС‰РµРіРѕ СѓР·Р»Р°
 			Node* prev = curr->right;
 
-			// Ищем самый левый узел в правом поддереве
+			// РС‰РµРј СЃР°РјС‹Р№ Р»РµРІС‹Р№ СѓР·РµР» РІ РїСЂР°РІРѕРј РїРѕРґРґРµСЂРµРІРµ
 			while (prev->left != nullptr && prev->left != curr) {
 				prev = prev->left;
 			}
 
-			// Если левый указатель свободен, значит нужно перейти в правое поддерево
+			// Р•СЃР»Рё Р»РµРІС‹Р№ СѓРєР°Р·Р°С‚РµР»СЊ СЃРІРѕР±РѕРґРµРЅ, Р·РЅР°С‡РёС‚ РЅСѓР¶РЅРѕ РїРµСЂРµР№С‚Рё РІ РїСЂР°РІРѕРµ РїРѕРґРґРµСЂРµРІРѕ
 			if (prev->left == nullptr) {
 				res.push_back(curr->key); 
 				prev->left = curr;        
 				curr = curr->right;       
 			}
 			else {
-				// Если связь уже есть, значит нужно перейти в левое поддерево
+				// Р•СЃР»Рё СЃРІСЏР·СЊ СѓР¶Рµ РµСЃС‚СЊ, Р·РЅР°С‡РёС‚ РЅСѓР¶РЅРѕ РїРµСЂРµР№С‚Рё РІ Р»РµРІРѕРµ РїРѕРґРґРµСЂРµРІРѕ
 				prev->left = nullptr;      
 				curr = curr->left;
 			}
